@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Form</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .message {
+            margin-top: 20px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <form id="simpleForm" action="#" method="post">
+            <button type="submit">Thank you for your feedback!</button>
+        </form>
+
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        document.getElementById('simpleForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('message').textContent = 'Your response has been recorded';
+        });
+    </script>
+
+</body>
+</html>
