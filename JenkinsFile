@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    environment {
+        // Safe default deploy folder in your user directory
+        DEPLOY_DIR = "C:\\Users\\Public\\blog-deploy"
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "Checking project files..."
+                bat 'dir'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "Running simple checks..."
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "Deploying website..."
+                // Create deploy directory if it doesn't exist
+                bat "if not exist \"${DEPLOY_DIR}\" mkdir \"${DEPLOY_DIR}\""
+                // Copy all project files to the deploy directory
+                bat "xcopy /E /Y * \"${DEPLOY_DIR}\\\""
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "Pipeline finished."
+        }
+        success {
+            echo "Pipeline succeeded!"
+        }
+        failure {
+            echo "Pipeline failed!"
+        }
+    }
+}
